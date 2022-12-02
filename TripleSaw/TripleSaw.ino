@@ -1,48 +1,7 @@
-/* TripleSaw.ino
-
-author: beserge
-
-Triplesaw oscillator example for the Patch SM.
-CV_1 controls the coarse tune.
-CV_2 controls the fine tune.
-CV_3 controls spread.
-
-To test, connect Audio IO and 3 pots to the Patch SM.
-Check the figures from the Patch SM datasheet for help connecting peripherals.
-You can also use the patch.Init()
-
-*/
-
 #include "DaisyDuino.h"
 
 DaisyHardware patch;
-
-
-/** A few Oscillators to build up a simple synthesizer
- *
- *  This is a generic oscillator class that can synthesize
- *  different waveforms, and has inputs for sync as well as FM
- */
 Oscillator osc_a, osc_b, osc_c;
-
-/** Callback for processing and synthesizing audio
- *
- *  The audio buffers are arranged as arrays of samples for each channel.
- *  For example, to access the left input you would use:
- *    in[0][n]
- *  where n is the specific sample.
- *  There are "size" samples in each array.
- *
- *  The default size is very small (just 4 samples per channel). This means the
- * callback is being called at 16kHz.
- *
- *  This size is acceptable for many applications, and provides an extremely low
- * latency from input to output. However, you can change this size by calling
- * hw.SetAudioBlockSize(desired_size). When running complex DSP it can be more
- * efficient to do the processing on larger chunks at a time.
- *
- */
-
 float voltsPerNote = 0.0833;
 float note = 0;
 
